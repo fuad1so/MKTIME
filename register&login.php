@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $register_password = password_hash($_POST["regPassword"], PASSWORD_DEFAULT);
         $sqlinsert = "INSERT INTO users (first_name,last_name,email,pass)
         VALUES ('$regFirstName', '$regLastName', '$register_email', '$register_password')";
-
         if (mysqli_query($link, $sqlinsert)) {
             echo ' <div class="alert alert-success mt-4 position-absolute top-0 start-50 translate-middle-x" role="alert">
            You have registerd successfully 
@@ -54,9 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-
     <div class="container">
         <input type="checkbox" id="flip">
         <div class="cover">
