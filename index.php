@@ -11,7 +11,8 @@
 
     <?php
     require("Database_conection.php");
-    require("register&login.php");
+    require("electronic.php");
+    //require("register&login.php");
 
     ?> </body>
 
