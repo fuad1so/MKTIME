@@ -4,7 +4,7 @@
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="electronic.php">Home</a>
-                <a href="fashion.html">Fashion</a>
+                <a href="logout.php">logout</a>
                 <a href="electronic.html">Electronic</a>
                 <a href="jewellery.html">Jewellery</a>
             </div>
