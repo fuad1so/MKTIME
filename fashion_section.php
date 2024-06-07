@@ -61,7 +61,7 @@ mysqli_stmt_close($stmt);
                                  <p class='price_text'>Start Price <span style='color:#262626;'>£{$items[$i]['item_price']}</span></p>
                                  <div class='electronic_img'>" . "<img src='img/{$items[$i]['item_img']}'>" . "</div>
                                     <div class='btn_main'>
-                                         <div class='buy_bt'><a href='#'>Add to Cart</a></div>
+                                         <div class='buy_bt'><a href='cart.php?id=$i'>Add to Cart</a></div>
                                          <div class='seemore_bt'><a href='#'>See More</a></div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@ mysqli_stmt_close($stmt);
                                  <p class='price_text'>Start Price <span style='color:#262626;'>£{$items[$i]['item_price']}</span></p>
                                  <div class='electronic_img'>" . "<img src='img/{$items[$i]['item_img']}'>" . "</div>
                                     <div class='btn_main'>
-                                         <div class='buy_bt'><a href='#'>Add to Cart</a></div>
+                                         <div class='buy_bt'><a href='cart.php?id=$i'>Add to Cart</a></div>
                                          <div class='seemore_bt'><a href='#'>See More</a></div>
                                     </div>
                                 </div>

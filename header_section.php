@@ -5,12 +5,14 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="electronic.php">Home</a>
                 <a href="logout.php">logout</a>
-                <a href="electronic.html">Electronic</a>
-                <a href="jewellery.html">Jewellery</a>
+                <a href="cart.php">Cart</a>
+                <a href="electronic.php">Watches</a>
+                <a href="">Electronic</a>
+                <a href="">Jewellery</a>
             </div>
             <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
             <div class="dropdown">
-                <a href="electronic.php" class="btn btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home
+                <a href="electronic.php" class="btn btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User
                 </a>
 
             </div>
@@ -40,7 +42,7 @@
                 </div>
                 <div class="login_menu">
                     <ul>
-                        <li><a href="register&login.php">
+                        <li><a href="cart.php">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span class="padding_10">Cart</span></a>
                         </li>

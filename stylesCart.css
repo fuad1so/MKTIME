@@ -2,13 +2,17 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.container {
+.containerC {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    min-height: 600px;
+    text-align: center;
 }
 
 h1 {
@@ -40,4 +44,9 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.containerC p {
+    font-size: 0px;
+
 }
