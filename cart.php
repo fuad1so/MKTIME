@@ -2,6 +2,7 @@
 session_start();
 require("Database_conection.php");
 $quantity = 1;
+$total = 0;
 
 // Initialize the cart if it doesn't exist
 if (!isset($_SESSION['cart'])) {
@@ -14,27 +15,30 @@ if (!isset($_SESSION['cart'])) {
 if (isset($_GET['id'])) {
     $itemId = intval($_GET['id'] + 1);
 
-
-
-    // Fetch the item details from the database
-    $sqlCheck = "SELECT item_id, item_name, item_desc, item_img, item_price FROM items WHERE item_id = ?";
-    $stmt = mysqli_prepare($link, $sqlCheck);
-    mysqli_stmt_bind_param($stmt, "i", $itemId);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $item_id, $item_name, $description, $image, $price);
-    if (mysqli_stmt_fetch($stmt)) {
-        // Add the item to the cart session
-        $_SESSION['cart'][] = [
-            'item_id' => $item_id,
-            'item_name' => $item_name,
-            'item_desc' => $description,
-            'item_img' => $image,
-            'item_price' => $price,
-
-        ];
+    if (isset($_SESSION['cart'][$itemId])) {
+        echo ' you have added this item before ';
+    } else {
+        // Fetch the item details from the database
+        $sqlCheck = "SELECT item_id, item_name, item_desc, item_img, item_price FROM items WHERE item_id = ?";
+        $stmt = mysqli_prepare($link, $sqlCheck);
+        mysqli_stmt_bind_param($stmt, "i", $itemId);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $item_id, $item_name, $description, $image, $price);
+        echo ' you are in addin part ';
+        if (mysqli_stmt_fetch($stmt)) {
+            // Add the item to the cart session
+            $_SESSION['cart'][] = [
+                'item_id' => $item_id,
+                'item_name' => $item_name,
+                'item_desc' => $description,
+                'item_img' => $image,
+                'item_price' => $price,
+            ];
+        }
+        mysqli_stmt_close($stmt);
     }
-    mysqli_stmt_close($stmt);
 }
+
 
 // Remove item from cart
 if (isset($_GET['remove'])) {
@@ -60,34 +64,42 @@ if (isset($_GET['remove'])) {
         <div class="containerC">
             <h1>Your Shopping Cart</h1>
             <?php if (empty($_SESSION['cart'])) : ?>
-                <p>Your cart is empty.</p>
+            <p>Your cart is empty.</p>
             <?php else : ?>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item Image</th>
-                            <th>Item Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Remove</th>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Image</th>
+                        <th>Item Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Remove</th>
 
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($_SESSION['cart'] as $index => $item) : ?>
-                            <tr>
-                                <td><img src="img/<?php echo $item['item_img']; ?>" alt="<?php echo $item['item_name']; ?>" width="100"></td>
-                                <td><?php echo $item['item_name']; ?></td>
-                                <td><?php echo $item['item_desc']; ?></td>
-                                <td>£<?php echo $item['item_price']; ?></td>
-                                <td> <?php echo $quantity ?></td>
-                                <td><a href="cart.php?remove=<?php echo $index; ?>">Remove</a></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($_SESSION['cart'] as $index => $item) : ?>
+                    <tr>
+                        <td><img src="img/<?php echo $item['item_img']; ?>" alt="<?php echo $item['item_name']; ?>"
+                                width="100"></td>
+                        <td><?php echo $item['item_name']; ?></td>
+                        <td><?php echo $item['item_desc']; ?></td>
+                        <td>£<?php echo $item['item_price']; ?></td>
+                        <td> <?php echo $quantity ?></td>
+                        <td><a href="cart.php?remove=<?php echo $index; ?>">Remove</a></td>
+                    </tr>
+                    <?php $total +=  $item['item_price'] * $quantity   ?>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td> Total </td>
+                        <td> £ <?php echo $total    ?> </td>
+                        <td><?php echo "<a href='checkout.php?total=$total' ><button class='btCheck'> checkout </button></a>" ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <?php endif; ?>
         </div>
     </div>

@@ -22,27 +22,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["login"])) {
         $logEmail = $_POST["logEmail"];
         $logPassword = $_POST["logPassword"];
-        $sqlCheck = " SELECT pass FROM users WHERE email = ?";
+        $sqlCheck = " SELECT pass,first_name FROM users WHERE email = ?";
         $stmt = mysqli_prepare($link, $sqlCheck);
         mysqli_stmt_bind_param($stmt, "s", $logEmail);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $password);
+        mysqli_stmt_bind_result($stmt, $password, $username);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
+
+
         if ($logPassword === $password) {
-            header("Location:profile.php");
+            $_SESSION['user'] = $username;
+            header("Location:profile.php?$username");
             exit;
         } else {
-            echo ' <div class="success alert-success p-2 mt-4 position-absolute top-0 start-50 translate-middle-x" role="alert">
-               You login successfully  </div>';
+            echo "<div class='alert alert-success p-2 mt-4 position-absolute top-0 start-50 translate-middle-x' role='alert'>
+            Wrong username or password
+          </div>";
         }
     }
 }
 ?>
 <?php
-$page = isset($_GET['page']) ? $_GET['page'] : 'section1';
+$page = isset($_GET['page']) ? $_GET['page'] : 'section';
 
-if ($page == 'section1')
+if ($page == 'section')
 ?>
 <!DOCTYPE html>
 
@@ -82,7 +86,7 @@ if ($page == 'section1')
                 </div>
             </div>
             <div class="forms">
-                <div class="form-content" action="">
+                <div class="form-content">
                     <div class="login-form">
                         <div class="title">Login</div>
                         <form action="#" method="post">

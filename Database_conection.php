@@ -9,6 +9,7 @@
 
 <body>
     <?php
+
     $link = mysqli_connect('localhost', 'root', '', 'mktime');
 
     if (!$link) {
