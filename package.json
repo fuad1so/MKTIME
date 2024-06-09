@@ -1,0 +1,15 @@
+{
+  "name": "mktime",
+  "version": "1.0.0",
+  "description": "The objective of this project is to develop a dynamic eCommerce website named MKTIME",
+  "main": "checkout.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.11.0"
+  }
+}

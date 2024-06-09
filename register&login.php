@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             echo "<div class='alert alert-success p-2 mt-4 position-absolute top-0 start-50 translate-middle-x' role='alert'>
-            $password or $logPassword
+            Login Successfully
           </div>";
         }
     }
