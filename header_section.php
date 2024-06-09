@@ -17,6 +17,7 @@ if (isset($_SESSION['user'])) {
                 <a href="electronic.php">Home</a>
                 <a href="logout.php">logout</a>
                 <a href="cart.php">Cart</a>
+                <a href="orders.php">orders</a>
                 <a href="electronic.php">Watches</a>
                 <a href="">Electronic</a>
                 <a href="">Jewellery</a>
