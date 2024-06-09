@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 require("Database_conection.php");
 if (isset($_SESSION['user'])) {
@@ -23,8 +23,7 @@ if (isset($_SESSION['user'])) {
             </div>
             <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
             <div class="dropdown">
-                <a href="electronic.php" class="btn btn-secondary" id="dropdownMenuButton" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
+                <a href="electronic.php" class="btn btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <?php print_r('user') ?>
                 </a>
 
@@ -34,8 +33,7 @@ if (isset($_SESSION['user'])) {
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search this blog">
                     <div class="input-group-append">
-                        <button class="btn btn-secondary" type="button"
-                            style="background-color: #f26522; border-color:#f26522 ">
+                        <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>

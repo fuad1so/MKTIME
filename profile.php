@@ -1,5 +1,9 @@
 <?php
 session_start();
 require("Database_conection.php");
-$user = $_SESSION['user'];
-print_r($user);
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    print_r("welcome  " . $user);
+} else {
+    header("Location: register&login.php");
+}

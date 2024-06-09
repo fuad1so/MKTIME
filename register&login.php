@@ -1,6 +1,7 @@
 <?php
+session_start();
 require("Database_conection.php");
-ob_start();
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["signUp"])) {
@@ -8,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $regLastName = filter_input(INPUT_POST, "regLastName", FILTER_SANITIZE_SPECIAL_CHARS);
         $register_email = $_POST["regEmail"];
         // Password hash
-        $register_password = password_hash($_POST["regPassword"], PASSWORD_DEFAULT);
+        $register_password = $_POST["regPassword"];
         $sqlinsert = "INSERT INTO users (first_name,last_name,email,pass)
         VALUES ('$regFirstName', '$regLastName', '$register_email', '$register_password')";
         if (mysqli_query($link, $sqlinsert)) {
@@ -22,22 +23,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["login"])) {
         $logEmail = $_POST["logEmail"];
         $logPassword = $_POST["logPassword"];
-        $sqlCheck = " SELECT pass,first_name FROM users WHERE email = ?";
+        $sqlCheck = " SELECT pass,first_name,user_id FROM users WHERE email = ?";
         $stmt = mysqli_prepare($link, $sqlCheck);
         mysqli_stmt_bind_param($stmt, "s", $logEmail);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $password, $username);
+        mysqli_stmt_bind_result($stmt, $password, $username, $user_id);
         mysqli_stmt_fetch($stmt);
         mysqli_stmt_close($stmt);
-
-
         if ($logPassword === $password) {
             $_SESSION['user'] = $username;
+            $_SESSION['user_id'] = $user_id;
             header("Location:profile.php?$username");
             exit;
         } else {
             echo "<div class='alert alert-success p-2 mt-4 position-absolute top-0 start-50 translate-middle-x' role='alert'>
-            Wrong username or password
+            $password or $logPassword
           </div>";
         }
     }
