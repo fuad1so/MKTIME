@@ -53,7 +53,7 @@ if (isset($_GET['remove'])) {
 <html>
 <?php require("head.php") ?>
 <title>Shopping Cart</title>
-<link rel="stylesheet" type="text/css" href="stylesCart.css">
+<link rel="stylesheet" type="text/css" href="css\stylesCart.css">
 </head>
 
 <body>
@@ -75,8 +75,6 @@ if (isset($_GET['remove'])) {
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Remove</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
